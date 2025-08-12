@@ -141,4 +141,41 @@ Cada vez que lo hagas, acepta el fingerprint y escribe la contraseña del usuari
 
 3.  Probar que funciona sin contraseña, si entras directamente sin que te pida contraseña, está todo correcto.
 
+# Tarea 8:
+## Enunciado:
+Se requiere:
+Instalar Ansible versión 4.8.0 en el Jump host usando solo pip3. Asegúrate de que el binario de Ansible esté disponible globalmente en este sistema, es decir, que todos los usuarios en este sistema puedan ejecutar comandos de Ansible.
+
+1.  Instala Ansible 4.8.0 con pip3 a nivel global:
+```
+sudo pip3 install ansible==4.8.0
+```
+2.  Verifica que Ansible esté instalado y accesible globalmente:
+```
+ansible --version
+```
+NOTA: me devuelve el siguiente mensaje :ansible --version
+ansible [core 2.11.12] 
+Se te pidió instalar Ansible 4.8.0, pero has instalado Ansible Core 2.11.12.
+Esto ocurre porque Ansible 4.8.0 es parte de un modelo de distribución anterior, basado en "Ansible base/core" + "collections".
+El número 4.8.0 hace referencia al paquete completo de Ansible lanzado antes de que se dividiera en "core" y "collections".
+
+ 3.  Pruebo a instalar de nuevo la versión que me piden esta vez metiendolo entre comillas.
+ 
+ ```
+sudo pip3 install "ansible==4.8.0"
+```
+NOTA: nos sigue devolviendo la misma versión. Si después de instalar con pip3 install "ansible==4.8.0" te sigue mostrando la versión core 2.11.12, es porque Ansible 4.8.0 usa core 2.11.12 internamente, y eso es completamente correcto.Ansible desde la versión 2.10 en adelante se dividió en:
+
+ansible-core → motor base (muestra como ansible [core x.x.x])
+
+ansible → paquete completo que incluye ansible-core + collections oficiales
+
+4.  Lanzamos el siguiente comando para verificar la versión del paquete completo:
+```
+pip3 show ansible
+```
+Con este comando si que nos devuelve la versión que queríamos.
+
+
 
