@@ -177,5 +177,26 @@ pip3 show ansible
 ```
 Con este comando si que nos devuelve la versión que queríamos.
 
+# Tarea 9:
+## Enunciado:
+Hay un problema crítico con la aplicación Nautilus en Stratos DC. El equipo de soporte de producción identificó que la aplicación no puede conectarse a la base de datos. Tras investigar el problema, el equipo descubrió que el servicio MariaDB está caído en el servidor de base de datos.
 
+1.  Accedemos al servidor de la base de datos.
+```
+ssh peter@stdb01
+```
+2. Hacemos:
+```
+sudo systemctl status mariadb
+```
+3. Mirar donde está el archivo de systemd para ver cual es la configuración asignada al servicio.
+
+4. Nos daba un aviso de que el directorio mysql tenía que estar vacío. Pero al revisarlo no estaba.
+
+5. Creamos el directorio en la ruta que nos indica asignandole dandole permisos a mysql.
+   mkdir
+7. Reiniciamos el servicio:
+```
+   sudo systemctl restart mariadb
+```
 
