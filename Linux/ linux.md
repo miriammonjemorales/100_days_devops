@@ -199,4 +199,32 @@ sudo systemctl status mariadb
 ```
    sudo systemctl restart mariadb
 ```
+# Tarea 13:
+## Enunciado:
+Tenemos uno de nuestros sitios web en funcionamiento en nuestra infraestructura Nautilus en Stratos DC. Nuestro equipo de seguridad ha planteado una preocupación: actualmente el puerto de Apache, es decir, el 8086, está abierto para todos ya que no hay ningún firewall instalado en estos hosts.
+Por lo tanto, hemos decidido agregar una capa de seguridad a estos hosts y, después de discusiones y recomendaciones, hemos definido los siguientes requerimientos:
 
+Instalar iptables y todas sus dependencias en cada servidor de aplicación.
+
+Bloquear el puerto de entrada 8086 en todas las aplicaciones para todos, excepto para el host LBR.
+
+Asegurarse de que las reglas se mantengan incluso después de reiniciar el sistema.
+
+1.  Conectar por ssh a cada servidor de aplicaciones.
+```
+ssh tony@stapp01
+```
+2. Instalamos iptables:
+```
+sudo dnf install iptables-services iptables-utils
+```
+3. Habilitar e iniciar el servicio.
+```
+sudo systemctl enable iptables
+sudo systemctl start iptables
+```
+4. Configuramos reglas de iptables:
+   4.1 Limpiar reglas existentes.
+```
+   sudo iptables -F
+```
