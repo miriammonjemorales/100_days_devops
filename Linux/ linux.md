@@ -238,15 +238,55 @@ sudo systemctl start iptables
 ```
 5. Guardar las reglas para que se mantengan a pesar de que se hagan reboots en el servidor.
 ```
-sudo service iptables save
-sudo systemctl enable iptables
+   sudo service iptables save
+   sudo systemctl enable iptables
 ```
 6. Comprobar que la configuración es correcta. Ver las reglas creadas.
 ```
-sudo iptables -L -n -v
+   sudo iptables -L -n -v
 ```
 NOTA: Para eliminar una regla creada:
 ```
-sudo iptables -D INPUT 2
+   sudo iptables -D INPUT 2
 ```
 Donde pone dos poner el numero de la regla a eliminar.
+
+# Tarea 13:
+## Enunciado:
+El equipo de soporte de producción de xFusionCorp Industries ha implementado algunas de las herramientas de monitoreo más recientes para supervisar todos los servicios, aplicaciones, etc., que se ejecutan en los sistemas.
+Uno de los sistemas de monitoreo reportó que el servicio Apache no está disponible en uno de los servidores de aplicaciones (app servers) en el Centro de Datos Stratos (Stratos DC).
+
+Identifica cuál es el servidor de aplicaciones con fallas y soluciona el problema.
+Asegúrate de que el servicio Apache esté activo y funcionando en todos los servidores de aplicaciones.
+Es posible que aún no haya código alojado en estos servidores, por lo tanto, no te preocupes si Apache no muestra páginas web.
+Solo asegúrate de que el servicio esté funcionando.
+Además, asegúrate de que Apache esté configurado para ejecutarse en el puerto 5003 en todos los servidores de aplicaciones.
+
+1. Entrar uno por uno en cada servidor y comprobar el estado del apache. Al ser centos usamos httpd.
+```
+   sudo systemctl status httpd
+```
+   Vemos que esta activo en el stapp02 y stapp03. Pero en el astapp01 no.
+
+2. Comprobamos en la salida del comando anterior el motivo, en este caso es porque el puerto 8089 está ocupado.
+3. Buscamos que proceso está ocupando el puerto.
+```
+   sudo netstat -tulnp
+```
+4. Matamos el proceso con el comando kill seguido de el PID del proceso a matar.
+```
+   sudo kill -9 <PID>
+```
+5. Activamos el apache
+```
+   sudo systemctl start httpd
+```
+6. Comprobamos el estado de apache
+```
+   sudo systemctl status httpd
+```
+7. Salimos del servidor y desde el jump host hacemos un curl.
+```
+   curl -I stapp01:8089
+```
+   
