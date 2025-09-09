@@ -241,7 +241,12 @@ sudo systemctl start iptables
 sudo service iptables save
 sudo systemctl enable iptables
 ```
-6. Comprobar que la configuración es correcta.
+6. Comprobar que la configuración es correcta. Ver las reglas creadas.
 ```
 sudo iptables -L -n -v
 ```
+NOTA: Para eliminar una regla creada:
+```
+sudo iptables -D INPUT 2
+```
+Donde pone dos poner el numero de la regla a eliminar.
