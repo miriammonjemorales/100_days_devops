@@ -228,3 +228,20 @@ sudo systemctl start iptables
 ```
    sudo iptables -F
 ```
+   4.2 Permitir puerto 8086 desde Servidor LBR.
+```
+   sudo iptables -A INPUT -p tcp --dport 8086 -j DROP
+```
+   4.3 Bloquear todo el trafico que no venga del puerto 8086
+```
+   sudo iptables -A INPUT -p tcp --dport 8086 -j DROP
+```
+5. Guardar las reglas para que se mantengan a pesar de que se hagan reboots en el servidor.
+```
+sudo service iptables save
+sudo systemctl enable iptables
+```
+6. Comprobar que la configuración es correcta.
+```
+sudo iptables -L -n -v
+```
